@@ -1,1 +1,7 @@
 SERVER_PORT=
+
+# Mysql configuration
+DB_HOST=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=

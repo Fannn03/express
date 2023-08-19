@@ -19,6 +19,10 @@ module.exports = (sequelize, datatype) => {
                 notEmpty: {
                     args: true,
                     msg: 'Username length cannot be empty'
+                },
+                not: {
+                    args: /\s/,
+                    msg: 'Username cannot contains white space'
                 }
             }
         },

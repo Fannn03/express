@@ -9,6 +9,10 @@ const syncronize = sequelize.sync()
 .then(() => console.log('Table syncronized'))
 .catch(error => console.log(error))
 
+const model = {}
+model.user = User
+
 module.exports = {
-    syncronize
+    syncronize,
+    model
 }

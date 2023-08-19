@@ -4,7 +4,10 @@ module.exports = (sequelize, datatype) => {
         username: {
             type: datatype.STRING,
             allowNull: false,
-            unique: true,
+            unique: {
+                args: true,
+                msg: 'Username has been taken'
+            },
             validate: {
                 notNull: {
                     msg: 'Username cannot be null'

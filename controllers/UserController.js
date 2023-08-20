@@ -29,10 +29,12 @@ module.exports = {
                 messages[error.path] = error.message
             })
 
-            return res.json({
+            return res
+                .status(400)
+                .json({
                 result: 'error',
                 messages: messages
-            })
+                })
         }
 
         return res.json({

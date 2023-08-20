@@ -29,12 +29,10 @@ module.exports = {
                 messages[error.path] = error.message
             })
 
-            return res
-                .status(400)
-                .json({
+            return res.status(400).json({
                 result: 'error',
                 messages: messages
-                })
+            })
         }
 
         return res.json({
@@ -52,7 +50,12 @@ module.exports = {
             }
         })
 
-        return res.json({
+        if(!user) return res.status(404).json({
+            result: 'error',
+            messages: 'Username not found'
+        })
+
+        else return res.json({
             result: 'success',
             data: user
         })

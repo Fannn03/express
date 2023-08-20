@@ -29,7 +29,7 @@ module.exports = {
                 messages[error.path] = error.message
             })
 
-            return res.json({
+            return res.status(400).json({
                 result: 'error',
                 messages: messages
             })
@@ -38,6 +38,26 @@ module.exports = {
         return res.json({
             result: 'success',
             messages: 'Data berhasil di buat!'
+        })
+
+    },
+    details: async (req, res) => {
+        
+        const username = req.params.username
+        const user = await User.findOne({
+            where: {
+                username: username
+            }
+        })
+
+        if(!user) return res.status(404).json({
+            result: 'error',
+            messages: 'Username not found'
+        })
+
+        else return res.json({
+            result: 'success',
+            data: user
         })
 
     }

@@ -40,5 +40,20 @@ module.exports = {
             messages: 'Data berhasil di buat!'
         })
 
+    },
+    details: async (req, res) => {
+        
+        const username = req.params.username
+        const user = await User.findOne({
+            where: {
+                username: username
+            }
+        })
+
+        return res.json({
+            result: 'success',
+            data: user
+        })
+
     }
 }

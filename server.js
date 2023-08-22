@@ -1,11 +1,11 @@
-const app = require('./main')
+const express = require('./main')
+
+const app = express.app
 
 require('dotenv').config()
 const env = process.env
 
-const Model = require('./models/Model')
-
 app.listen(env.SERVER_PORT, () => {
-    Model.syncronize
+    express.Model.syncronize
     console.log(`Server running on port ${env.SERVER_PORT}`);
 })

@@ -1,4 +1,6 @@
 SERVER_PORT=
+# should be value testing, development, production
+APP=
 
 # Mysql configuration
 DB_HOST=

@@ -1,4 +1,4 @@
-const db = require('../configs/sequelize')
+const db = require('../config/sequelize')
 require('dotenv').config()
 const env = process.env
 

@@ -26,6 +26,23 @@ module.exports = (sequelize, datatype) => {
                 }
             }
         },
+        email: {
+            type: datatype.STRING,
+            allowNull: false,
+            unique: {
+                args: true,
+                msg: 'Email has been taken'
+            },
+            validate: {
+                notNull: {
+                    msg: 'Email cannot be null'
+                },
+                notEmpty: {
+                    args: true,
+                    msg: 'Email length cannot be empty'
+                }
+            }
+        },
         firstname: {
             type: datatype.STRING,
             allowNull: false,

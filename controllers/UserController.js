@@ -4,7 +4,17 @@ const User = Model.user
 module.exports = {
     get: async (req, res) => {
 
-        const users = await User.findAll()
+        let number
+
+        if(!req.query.page || req.query.page == 1) number = 0
+        else number = parseInt(req.query.page)
+
+        const users = await User.findAll({offset: number * 50, limit: 50})
+
+        if(!users.length) return res.status(404).json({
+            result: 'error',
+            data: 'Data not found'
+        })
 
         return res.json({
             result: 'success',

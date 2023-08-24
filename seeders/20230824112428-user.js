@@ -8,13 +8,17 @@ module.exports = {
 
     let data = []
 
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 1000; i++) {
+
+      let firstName = faker.person.firstName()
+      let lastName = faker.person.lastName()
 
       let user = {
-        username: faker.internet.userName(),
+        username: faker.internet.userName({firstname: firstName, lastName: lastName}),
         email: faker.internet.email(),
-        firstname: faker.person.firstName(),
-        lastname: faker.person.lastName(),
+        password: faker.internet.password({length: 20}),
+        firstname: firstName,
+        lastname: lastName,
         createdAt: faker.date.anytime(),
         updatedat: faker.date.anytime()
       }

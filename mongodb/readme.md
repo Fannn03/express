@@ -1,0 +1,1 @@
+This folder only for extension mongodb in vscode

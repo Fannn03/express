@@ -1,3 +1,4 @@
+const responseMessage = require('../utils/response-message')
 const Model = require('../models/Model').model
 const User = Model.user
 
@@ -11,24 +12,31 @@ module.exports = {
 
         const users = await User.findAll({offset: number * 50, limit: 50})
 
-        if(!users.length) return res.status(404).json({
-            result: 'error',
-            data: 'Data not found'
+        if(!users.length) return responseMessage({
+            req: req,
+            res: res,
+            statusCode: 400,
+            message: "Username cannot be null"
         })
 
-        return res.json({
-            result: 'success',
+        return responseMessage({
+            req: req,
+            res: res,
+            statusCode: 200,
+            message: "Sucessfully get all users data",
             data: users
         })
 
     },
     create: async (req, res) => {
 
-        const {username, firstname, lastname} = req.body
+        const {username, email, password, firstname, lastname} = req.body
 
         try{
             await User.create({
                 username: username,
+                email: email,
+                password: password,
                 firstname: firstname,
                 lastname: lastname
             })
@@ -39,15 +47,19 @@ module.exports = {
                 messages[error.path] = error.message
             })
 
-            return res.status(400).json({
-                result: 'error',
-                messages: messages
+            return responseMessage({
+                req: req,
+                res: res,
+                statusCode: 400,
+                message: messages
             })
         }
 
-        return res.json({
-            result: 'success',
-            messages: 'Data berhasil di buat!'
+        return responseMessage({
+            req: req,
+            res: res,
+            statusCode: 200,
+            message: "Record successfully created",
         })
 
     },
@@ -60,13 +72,18 @@ module.exports = {
             }
         })
 
-        if(!user) return res.status(404).json({
-            result: 'error',
-            messages: 'Username not found'
+        if(!user) return responseMessage({
+            req: req,
+            res: res,
+            statusCode: 404,
+            message: "User is not found"
         })
 
-        else return res.json({
-            result: 'success',
+        return responseMessage({
+            req: req,
+            res: res,
+            statusCode: 200,
+            message: "Successfully get details user",
             data: user
         })
 

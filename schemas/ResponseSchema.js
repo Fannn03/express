@@ -13,5 +13,5 @@ const Schema = mongoose.Schema({
     }
 })
 
-const model = mongoose.model('errors', Schema)
+const model = mongoose.model('responses', Schema)
 module.exports = model

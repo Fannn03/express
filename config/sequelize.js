@@ -9,7 +9,9 @@ const sequelize = new Sequelize(env.DB_DATABASE, env.DB_USERNAME, env.DB_PASSWOR
 })
 
 sequelize.authenticate()
-.catch(error => console.log(error))
+.catch(error => {
+    throw new Error(error)
+})
 
 const db = {}
 db.sequelize = sequelize

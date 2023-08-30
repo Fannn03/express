@@ -73,6 +73,20 @@ module.exports = (sequelize, datatype) => {
             type: datatype.STRING,
             allowNull: true
         }
+    }, {
+        // options
+        defaultScope: {
+            attributes: {
+                exclude: ['id', 'password'] // default ignoring these fields
+            }
+        },
+        scopes: {
+            password: { // using scope with key password to include field password
+                attributes: {
+                    include: ['password']
+                }
+            }
+        }
     })
 
     return User

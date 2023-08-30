@@ -11,7 +11,7 @@ module.exports = async ({req, res, statusCode, message, data = null}) => {
         })
 
         const response = new ResponseSchema({
-            name: message,
+            message: message,
             type: 'success',
             method: req.method,
             endpoint: req.originalUrl
@@ -29,12 +29,30 @@ module.exports = async ({req, res, statusCode, message, data = null}) => {
         })
 
         const response = new ResponseSchema({
-            name: message,
+            message: message,
             type: 'bad request',
             method: req.method,
             endpoint: req.originalUrl
         })
-        console.log(response);
+
+        return await response.save()
+
+    }
+
+    if(statusCode === 404) {
+
+        res.status(statusCode).json({
+            result: 'error',
+            message: message
+        })
+
+        const response = new ResponseSchema({
+            message: message,
+            type: 'not found',
+            method: req.method,
+            endpoint: req.originalUrl
+        })
+
         return await response.save()
 
     }

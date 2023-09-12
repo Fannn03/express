@@ -7,7 +7,6 @@ require('dotenv').config()
 const env = process.env
 
 app.listen(env.SERVER_PORT, async () => {
-    await express.Model.syncronize
     await mongoose()
     console.log(`Server running on port ${env.SERVER_PORT}`);
 })

@@ -1,5 +1,5 @@
 const responseMessage = require('../utils/response-message')
-const Model = require('../models/Model').model
+const Model = require('../models/Model')
 const User = Model.user
 
 module.exports = {

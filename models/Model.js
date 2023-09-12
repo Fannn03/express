@@ -10,14 +10,7 @@ const User = require('./User')(sequelize, datatype)
 let forceSync
 (env.APP == 'testing') ? forceSync = true : forceSync = false
 
-const syncronize = sequelize.sync({force: forceSync})
-.then(() => console.log('Table syncronized'))
-.catch(error => console.log(error))
-
 const model = {}
 model.user = User
 
-module.exports = {
-    syncronize,
-    model
-}
+module.exports = model
